@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "beats",
+  basePath: "/beats",
   // /* config options here */
   // async rewrites() {
   //   return [

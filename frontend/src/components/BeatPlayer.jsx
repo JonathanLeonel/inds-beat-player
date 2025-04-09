@@ -2,25 +2,33 @@
 
 import React, { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
-// const Plyr = dynamic(() => import("plyr"), { ssr: false });
-// import Plyr from "plyr-react";
 const Plyr = dynamic(() => import("plyr-react"), { ssr: false });
+const { APITypes, PlyrInstance, PlyrProps, usePlyr } = Plyr;
 import "plyr/dist/plyr.css";
 
-const BeatPlayer = ({ beatName }) => {
-  //   const playerRef = useRef(null);
+// const BeatPlayer = () => {
+//   const { source, options = null } = props;
 
-  //   useEffect(() => {
-  //     const player = new Plyr(playerRef.current, {
-  //       controls: true, //["play", "progress", "current-time"],
-  //       autoplay: false,
-  //       autopause: true,
-  //     });
+//   const raptorRef = usePlyr(ref, {
+//     source,
+//     options,
+//   })
 
-  //     // return () => {
-  //     //   player.destroy();
-  //     // };
-  //   }, [beatName]);
+//   return <audio ref={raptorRef} className="plyr-react plyr" {...rest} />
+
+//   // playerRef.current.plyr.on("play", () => {
+//   //   console.log("Playing some shit")
+//   // })
+
+//   return (
+//     <div onContextMenu={(e) => e.preventDefault()}>
+//       <Plyr ref={playerRef} {...plyrProps} />
+//     </div>
+//   );
+// };
+
+const BeatPlyrComponent = ({ beatName }) => {
+  const ref = React.useRef<APITypes>(null);
 
   const plyrProps = {
     source: {
@@ -38,20 +46,22 @@ const BeatPlayer = ({ beatName }) => {
     },
   };
 
-  return (
-    <div onContextMenu={(e) => e.preventDefault()}>
-      <Plyr {...plyrProps} />
-      {/* <audio
-        ref={playerRef}
-        // controls={["play"]}
-        // controlsList="play,progress"
-        // disableContextMenu
-        // controls={playerRef.current?.controls || ""}
-        crossOrigin="anonymous"
-        src={`/api/beat/stream/${beatName}`}
-      /> */}
-    </div>
-  );
+  const raptorRef = usePlyr(ref, {
+    source: plyrProps.source,
+    options: plyrProps.options
+  });
+
+  
+  return <audio ref={raptorRef} className="plyr-react plyr" {...rest} />;
+
+  // return (
+  //   <div className="wrapper">
+  //       <BeatPlayer
+  //         ref={ref}
+  //         options={plyrProps}
+  //       />
+  //   </div>
+  // );
 };
 
-export default BeatPlayer;
+export default BeatPlyrComponent;

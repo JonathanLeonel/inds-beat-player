@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="p-8 space-y-6">
       <h1 className="text-3xl font-bold mb-4">Mi Portfolio de Beats</h1>
-      <button onClick={handleUpdate}></button>
+      <button onClick={handleUpdate}>Actualizar</button>
       {beats.map((beat) => (
         <div key={beat} className="rounded-xl shadow-md p-4 bg-white">
           <h2 className="text-xl font-semibold mb-2">{beat}</h2>
