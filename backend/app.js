@@ -21,9 +21,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/beat", beatsRouter);
+// app.use("/", indexRouter);
+// app.use("/users", usersRouter);
+
+// Beats SPA
+app.use("/beats", express.static("../frontend/out"));
+
+// Api beats
+app.use("/api/beat", beatsRouter);
 
 app.use(cors());
 
@@ -44,3 +49,5 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+//
