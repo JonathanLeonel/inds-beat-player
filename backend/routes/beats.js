@@ -7,7 +7,7 @@ const path = require("path");
 router.get("/", function (req, res, next) {
   //   res.render("index", { title: "IndustrialesBeats" });
 
-  const beats = fs.readdirSync("./beats");
+  const beats = fs.readdirSync("/var/www/beats");
 
   res.send({
     beats: beats,
