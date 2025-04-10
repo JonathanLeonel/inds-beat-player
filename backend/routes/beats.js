@@ -15,7 +15,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/stream/:name", (req, res) => {
-  const filePath = path.join(__dirname, "../beats", `${req.params.name}`);
+  const filePath = path.join("/var/www/beats", `${req.params.name}`);
 
   console.log(filePath);
 
