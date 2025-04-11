@@ -1,10 +1,12 @@
 // frontend/src/App.jsx
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import BeatPlayer from "../components/BeatPlayer";
 
 function App() {
   const [beats, setBeats] = useState([]);
+  // const [activePlayer, setActivePlayer] = useState(null);
+  const playersRef = useRef({})
 
   useEffect(() => {
     const fetchBeats = async () => {
@@ -24,6 +26,21 @@ function App() {
     });
     const jsonResponse = await response.json();
     setBeats(jsonResponse.beats);
+  }  
+  
+  const handlePlay = (name) => {
+    // Pausar todos los reproductores excepto el actual
+    Object.entries(playersRef.current).forEach(([playerName, player]) => {
+      if (playerName !== playerName && player && !player.paused) {
+        player.pause();
+      }
+    });
+    // setActivePlayer(name);
+  };
+
+  const handleInit = (player, name) => {
+    playersRef.current[name] = player
+    player.on("play", () => handlePlay(name))
   }
 
   return (
@@ -34,7 +51,7 @@ function App() {
       {beats.map((beat) => (
         <div key={beat} className="rounded-xl shadow-md p-4 bg-white">
           <h2 className="text-xl font-semibold mb-2">{beat}</h2>
-          <BeatPlayer beatName={beat} />
+          <BeatPlayer beatName={beat} onInit={handleInit}/>
         </div>
       ))}
     </div>

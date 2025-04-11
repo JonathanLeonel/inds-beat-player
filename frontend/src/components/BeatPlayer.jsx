@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const Plyr = dynamic(() => import("plyr-react"), { ssr: false });
 import "plyr/dist/plyr.css";
 
-const BeatPlayer = ({ beatName }) => {
+const BeatPlayer = ({ beatName, onInit }) => {
   //   const playerRef = useRef(null);
 
   //   useEffect(() => {
@@ -40,7 +40,7 @@ const BeatPlayer = ({ beatName }) => {
 
   return (
     <div onContextMenu={(e) => e.preventDefault()}>
-      <Plyr {...plyrProps} />
+      <Plyr {...plyrProps} onInit={onInit} />
       {/* <audio
         ref={playerRef}
         // controls={["play"]}
