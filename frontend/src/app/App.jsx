@@ -31,14 +31,16 @@ function App() {
   const handlePlay = (name) => {
     // Pausar todos los reproductores excepto el actual
     Object.entries(playersRef.current).forEach(([playerName, player]) => {
-      if (playerName !== playerName && player && !player.paused) {
+      // console.log(player)
+      if (playerName !== name && player && !player.paused) {
         player.pause();
       }
     });
-    // setActivePlayer(name);
   };
 
   const handleInit = (player, name) => {
+    // console.log("JK: player")
+    // console.log(player)
     playersRef.current[name] = player
     player.on("play", () => handlePlay(name))
   }
@@ -51,7 +53,7 @@ function App() {
       {beats.map((beat) => (
         <div key={beat} className="rounded-xl shadow-md p-4 bg-white">
           <h2 className="text-xl font-semibold mb-2">{beat}</h2>
-          <BeatPlayer beatName={beat} onInit={handleInit}/>
+          <BeatPlayer beatName={beat} handleInit={handleInit}/>
         </div>
       ))}
     </div>
