@@ -3,11 +3,13 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
+const beatsPath = process.env.NODE_ENV ? "./beats" : "/var/www/beats"
+
 /* GET beat list. */
 router.get("/", function (req, res, next) {
   //   res.render("index", { title: "IndustrialesBeats" });
 
-  const beats = fs.readdirSync("/var/www/beats");
+  const beats = fs.readdirSync(beatsPath);
 
   res.send({
     beats: beats,
@@ -15,7 +17,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/stream/:name", (req, res) => {
-  const filePath = path.join("/var/www/beats", `${req.params.name}`);
+  const filePath = path.join(beatsPath, `${req.params.name}`);
 
   console.log(filePath);
 
