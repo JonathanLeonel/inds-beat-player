@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+@import "tailwindcss/preflight.css" layer(base);
 
 :root {
   --background: #ffffff;
@@ -8,9 +11,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --font-sans: var(--font-geist-sans); */
+  /* --font-mono: var(--font-geist-mono); */
+  --font-display: "Bebas Neue", "sans-serif";
+  --font-display: "Montserrat", "mono";
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -22,5 +29,11 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: Montserrat;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Bebas Neue";
+  font-weight: 400;
 }
