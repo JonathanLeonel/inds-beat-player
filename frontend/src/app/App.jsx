@@ -5,7 +5,6 @@ import BeatPlayer from "../components/BeatPlayer";
 
 function App() {
   const [beats, setBeats] = useState([]);
-  // const [activePlayer, setActivePlayer] = useState(null);
   const playersRef = useRef({})
 
   useEffect(() => {
@@ -29,9 +28,7 @@ function App() {
   }  
   
   const handlePlay = (name) => {
-    // Pausar todos los reproductores excepto el actual
     Object.entries(playersRef.current).forEach(([playerName, player]) => {
-      // console.log(player)
       if (playerName !== name && player && !player.paused) {
         player.pause();
       }
@@ -39,8 +36,6 @@ function App() {
   };
 
   const handleInit = (player, name) => {
-    // console.log("JK: player")
-    // console.log(player)
     playersRef.current[name] = player
     player.on("play", () => handlePlay(name))
   }
@@ -49,7 +44,6 @@ function App() {
     <div className="p-8 space-y-6">
       <h1 className="text-3xl font-bold mb-4">Catálogo beats - Beatmaking Partners</h1>
       <h2 className="text-3xl font-bold mb-4">Industriales Prods</h2>
-      {/* <button onClick={handleUpdate}>Actualizar</button> */}
       {beats.map((beat) => (
         <div key={beat} className="rounded-xl shadow-md p-4 bg-white">
           <h2 className="text-xl font-semibold mb-2">{beat}</h2>
