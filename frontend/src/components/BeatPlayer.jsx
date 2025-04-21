@@ -31,7 +31,7 @@ const BeatPlayer = ({ beatName, handleInit }) => {
 
   return (
     <div onContextMenu={(e) => e.preventDefault()}>
-      <Plyr ref={setRef} {...plyrProps} />
+      <Plyr ref={setRef} {...plyrProps} style={{"--plyr-font-family": "Bebas Neue"}}/>
     </div>
   );
 };

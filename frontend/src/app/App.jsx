@@ -41,12 +41,12 @@ function App() {
   }
 
   return (
-    <div className="p-8 space-y-6">
-      <h1 className="text-3xl font-bold mb-4">Catálogo beats - Beatmaking Partners</h1>
-      <h2 className="text-3xl font-bold mb-4">Industriales Prods</h2>
+    <div className="p-8 space-y-6 bg-black">
+      <h1 className="text-4xl font-regular mb-0">Catálogo Beatmaking Partners</h1>
+      <h2 className="text-3xl font-regular mb-4">Industriales Prods</h2>
       {beats.map((beat) => (
         <div key={beat} className="rounded-xl shadow-md p-4 bg-white">
-          <h2 className="text-xl font-semibold mb-2">{beat}</h2>
+          <h2 className="text-xl font-semibold mb-2 text-black">{beat}</h2>
           <BeatPlayer beatName={beat} handleInit={handleInit}/>
         </div>
       ))}
